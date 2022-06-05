@@ -1,0 +1,103 @@
+{{ template "sis/sections/header" . }}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 px-1">
+        <h3 class="h3 mb-0 text-gray-800">Halaman List Barang</h3>
+    </div>
+
+    <!-- Content Row -->
+    <div class="card shadow mb-5">
+        <div class="card-header py-3">
+            <a class="btn btn-primary btn-icon-split add-new" href="javascript:void(0)" onclick="insertAction();">
+                <span class="icon text-white"><i class="fas fa-plus"></i></span>
+                <span class="text">Tambah Data</span>
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="table"
+                       data-search="true"
+                       data-pagination="true"
+                       data-ajax="ajaxRequest"
+                       data-show-export="true"
+                       data-show-footer="true"
+                       data-show-columns="true"
+                       data-side-pagination="server"
+                       data-page-list="[5, 10, 15, 20]">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalUpsert" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah / Edit Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="product_id" class="col-form-label">ID Barang</label>
+                        <input type="text" class="form-control" id="product_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Nama Barang</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="barcode" class="col-form-label">Barcode</label>
+                        <input type="number" class="form-control" id="barcode" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="stock" class="col-form-label">Stok</label>
+                        <input type="number" class="form-control" id="stock" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="ppn" class="col-form-label">Barang Kena PPN</label>
+                        <select class="form-control" id="ppn">
+                            <option selected>Ya</option>
+                            <option value="Tidak">Tidak</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="col-form-label">Harga</label>
+                        <input type="number" class="form-control" id="price" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="member_price" class="col-form-label">Harga Member</label>
+                        <input type="number" class="form-control" id="member_price" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="member_price" class="col-form-label">Diskon</label>
+                        <input type="number" class="form-control" id="discount" value="0">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="upsertProduct">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.container-fluid -->
+{{ template "sis/sections/footer" . }}
+
+<!--Load custom javascript -->
+<script src="{{ .TemplateURL }}/js/utils/price_formatter.js"></script>
+<script src="{{ .TemplateURL }}/js/utils/checkbox_formatter.js"></script>
+
+<!--Load page level javascript -->
+<script src="{{ .TemplateURL }}/js/sis/product/productget.js"></script>
+<script src="{{ .TemplateURL }}/js/sis/product/productadd.js"></script>
+<script src="{{ .TemplateURL }}/js/sis/product/productsave.js"></script>
+<script src="{{ .TemplateURL }}/js/sis/product/productedit.js"></script>
+<script src="{{ .TemplateURL }}/js/sis/product/productdelete.js"></script>

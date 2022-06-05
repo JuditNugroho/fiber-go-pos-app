@@ -1,0 +1,85 @@
+{{ template "sis/sections/header" . }}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 px-1">
+        <h3 class="h3 mb-0 text-gray-800">Halaman User</h3>
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="card shadow mb-5">
+        <div class="card-header py-3">
+            <a class="btn btn-primary btn-icon-split add-new" href="javascript:void(0)" onclick="insertAction();">
+                <span class="icon text-white"><i class="fas fa-plus"></i></span>
+                <span class="text">Tambah Data</span>
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="table"
+                       data-search="true"
+                       data-pagination="true"
+                       data-show-export="true"
+                       data-show-footer="true"
+                       data-ajax="ajaxRequest"
+                       data-show-columns="true"
+                       data-page-list="[5, 10, 15, 20]">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalUpsert" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah / Edit Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="user_id" class="col-form-label">User ID</label>
+                        <input type="text" class="form-control" id="user_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_name" class="col-form-label">Username</label>
+                        <input type="text" class="form-control" id="user_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="full_name" class="col-form-label">Full Name</label>
+                        <input type="text" class="form-control" id="full_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-form-label">Password</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="is_admin" class="col-form-label">User Admin</label>
+                        <select class="form-control" id="is_admin">
+                            <option selected>Ya</option>
+                            <option value="Tidak">Tidak</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="upsertUser">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.container-fluid -->
+{{ template "sis/sections/footer" . }}
+<script src="{{ .TemplateURL }}/js/sis/user/userget.js"></script>
+<script src="{{ .TemplateURL }}/js/sis/user/useradd.js"></script>
+<script src="{{ .TemplateURL }}/js/sis/user/usersave.js"></script>
+<script src="{{ .TemplateURL }}/js/sis/user/useredit.js"></script>
+<script src="{{ .TemplateURL }}/js/sis/user/userdelete.js"></script>

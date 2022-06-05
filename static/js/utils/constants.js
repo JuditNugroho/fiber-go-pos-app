@@ -1,0 +1,1 @@
+const ppnDecimal = 0.11;

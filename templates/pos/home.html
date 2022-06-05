@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{ template "pos/header" . }}
+
+<body class="pos body-custom">
+<p style="display: none" id="baseURL">{{ .BaseURL }}</p>
+<nav class="navbar navbar-dark navbar-color" role="navigation">
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+            <li><a class="navbar-brand" href="#">POS Minimarket XYZ</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#contact">Right</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#contact">Right</a></li>
+        </ul>
+    </div>
+</nav>
+<table class="layout-table w-100">
+    <tbody>
+    <tr>
+        <td style="width: 800px;">
+            {{ template "pos/left-content" . }}
+        </td>
+        <td>
+            {{ template "pos/right-content" . }}
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{ template "pos/modal/add-member" . }}
+{{ template "pos/modal/payment" . }}
+</body>
+{{ template "pos/footer" . }}
+</html>
