@@ -63,6 +63,7 @@ func main() {
 	// Service Group
 	svcGroup := app.Group("/svc")
 	serviceRoutes.BuildUserRoutes(svcGroup)
+	serviceRoutes.BuildLoginRoutes(svcGroup)
 	serviceRoutes.BuildMemberRoutes(svcGroup)
 	serviceRoutes.BuildProductRoutes(svcGroup)
 

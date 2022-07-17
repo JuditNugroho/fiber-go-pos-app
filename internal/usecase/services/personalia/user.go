@@ -78,9 +78,13 @@ func DeleteUser(ctx *fiber.Ctx, userID string) error {
 }
 
 func UpsertUser(ctx *fiber.Ctx, user personaliaEntity.User) error {
-	_, found, err := personaliaRepo.GetUserByUserID(ctx, user.UserID)
+	userDB, found, err := personaliaRepo.GetUserByUserID(ctx, user.UserID)
 	if err != nil {
 		return err
+	}
+
+	if userDB.Password != user.Password {
+		user.Password, _ = customPkg.HashPassword(user.Password)
 	}
 
 	if !found {
