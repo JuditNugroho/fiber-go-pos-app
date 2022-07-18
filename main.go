@@ -1,12 +1,16 @@
 package main
 
 import (
+	"crypto/rand"
+	"crypto/rsa"
+	"log"
 	"time"
 
 	goccyJson "github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	jwtWare "github.com/gofiber/jwt/v3"
 	"github.com/gofiber/template/html"
 	"github.com/joho/godotenv"
 
@@ -20,7 +24,7 @@ import (
 )
 
 func main() {
-	engine := html.New("./templates", ".html")
+	engine := html.New(constantsEntity.TemplateDirectory, ".html")
 	engine.Reload(true)
 	engine.Debug(true)
 
@@ -33,9 +37,19 @@ func main() {
 		AppName:      constantsEntity.AppName,
 	})
 
+	// Setting JWT RS256
+	privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
+	if err != nil {
+		log.Fatalf("rsa.GenerateKey: %v", err)
+	}
+
 	// Setting basic configuration
-	app.Use(logger.New(), recover.New())
-	app.Static("/static", "./static")
+	app.Use(logger.New(), recover.New(), jwtWare.New(jwtWare.Config{
+		SigningMethod: constantsEntity.JWTMethod,
+		SigningKey:    privateKey.Public(),
+	}))
+
+	app.Static(constantsEntity.StaticUrl, constantsEntity.StaticDirectory)
 
 	if err := godotenv.Load(); err != nil {
 		panic(err)

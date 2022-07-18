@@ -12,7 +12,7 @@ func WebSISHomeHandler(ctx *fiber.Ctx) error {
 		Title:        constantsEntity.WebSISHomeTitle,
 		BaseURL:      constantsEntity.BaseURL,
 		CurrentURL:   constantsEntity.WebSISHomeURL,
-		TemplateURL:  constantsEntity.TemplateUrl,
+		StaticUrl:    constantsEntity.StaticUrl,
 		LinkPageList: constantsEntity.LinkPageList,
 	})
 }

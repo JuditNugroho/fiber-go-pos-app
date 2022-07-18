@@ -12,7 +12,7 @@ func WebPOSHomeHandler(ctx *fiber.Ctx) error {
 		Title:        constantsEntity.WebPosHomeTitle,
 		BaseURL:      constantsEntity.BaseURL,
 		CurrentURL:   constantsEntity.WebPOSHomeURL,
-		TemplateURL:  constantsEntity.TemplateUrl,
+		StaticUrl:    constantsEntity.StaticUrl,
 		LinkPageList: constantsEntity.LinkPageList,
 	})
 }

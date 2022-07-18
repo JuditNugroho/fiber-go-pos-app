@@ -11,7 +11,7 @@ func WebSISMemberHandler(ctx *fiber.Ctx) error {
 	return ctx.Render("sis/pages/member", constantsEntity.WebData{
 		Title:        constantsEntity.WebSISMemberTitle,
 		BaseURL:      constantsEntity.BaseURL,
-		TemplateURL:  constantsEntity.TemplateUrl,
+		StaticUrl:    constantsEntity.StaticUrl,
 		CurrentURL:   constantsEntity.WebSISMemberURL,
 		LinkPageList: constantsEntity.LinkPageList,
 	})

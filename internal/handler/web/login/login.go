@@ -12,7 +12,7 @@ func WebLoginHandler(ctx *fiber.Ctx) error {
 		Title:        constantsEntity.WebLoginTitle,
 		BaseURL:      constantsEntity.BaseURL,
 		CurrentURL:   constantsEntity.WebLoginURL,
-		TemplateURL:  constantsEntity.TemplateUrl,
+		StaticUrl:    constantsEntity.StaticUrl,
 		LinkPageList: constantsEntity.LinkPageList,
 	})
 }

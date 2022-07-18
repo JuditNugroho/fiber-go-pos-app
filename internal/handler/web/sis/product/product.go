@@ -11,7 +11,7 @@ func WebProductHandler(ctx *fiber.Ctx) error {
 	return ctx.Render("sis/pages/product", constantsEntity.WebData{
 		Title:        constantsEntity.WebSISProductTitle,
 		BaseURL:      constantsEntity.BaseURL,
-		TemplateURL:  constantsEntity.TemplateUrl,
+		StaticUrl:    constantsEntity.StaticUrl,
 		CurrentURL:   constantsEntity.WebSISProductURL,
 		LinkPageList: constantsEntity.LinkPageList,
 	})

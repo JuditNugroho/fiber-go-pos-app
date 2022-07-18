@@ -2,8 +2,11 @@ package constants
 
 // Default constants (for global setting like static template, app name, etc.)
 
-const TemplateUrl = "/static"
+const JWTMethod = "RS256"
+const StaticUrl = "/static"
 const AppName = "fiber-go-pos-app"
+const StaticDirectory = "./static"
+const TemplateDirectory = "./static"
 
 // Base constants
 

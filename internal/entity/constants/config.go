@@ -18,6 +18,6 @@ type WebData struct {
 	Title        string
 	BaseURL      string
 	CurrentURL   string
-	TemplateURL  string
+	StaticUrl    string
 	LinkPageList map[string]string
 }
