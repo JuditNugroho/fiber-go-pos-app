@@ -27,7 +27,7 @@ func CreateJWTToken(req formEntity.JWTRequest) (string, error) {
 		"user_id": req.UserID,
 		"name":    req.Name,
 		"admin":   req.Admin,
-		"expired": time.Now().Add(time.Hour * 72).Unix(),
+		"exp":     time.Now().Add(time.Hour * 72).Unix(),
 	}
 
 	// Create token
