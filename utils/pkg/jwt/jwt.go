@@ -12,7 +12,8 @@ import (
 var privateKey *rsa.PrivateKey
 
 func GenerateJWT() error {
-	_, err := rsa.GenerateKey(rand.Reader, 2048)
+	var err error
+	privateKey, err = rsa.GenerateKey(rand.Reader, 2048)
 	return err
 }
 

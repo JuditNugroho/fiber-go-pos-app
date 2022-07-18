@@ -6,6 +6,8 @@ import (
 
 	formEntity "github.com/fiber-go-pos-app/internal/entity/form"
 
+	"github.com/fiber-go-pos-app/utils/pkg/custom"
+
 	formSvc "github.com/fiber-go-pos-app/internal/usecase/services/form"
 )
 
@@ -24,11 +26,12 @@ func LoginHandler(ctx *fiber.Ctx) error {
 		})
 	}
 
-	if err := formSvc.LoginForm(ctx, loginRequest); err != nil {
+	data, err := formSvc.LoginForm(ctx, loginRequest)
+	if err != nil {
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"message": err.Error(),
 		})
 	}
 
-	return ctx.SendString("User berhasil login")
+	return custom.BuildJSONRes(ctx, data)
 }

@@ -1,7 +1,6 @@
 package form
 
 import (
-	"fmt"
 	"github.com/fiber-go-pos-app/utils/pkg/custom"
 	"github.com/fiber-go-pos-app/utils/pkg/jwt"
 	"github.com/gofiber/fiber/v2"
@@ -12,30 +11,33 @@ import (
 	personaliaRepo "github.com/fiber-go-pos-app/internal/repo/personalia"
 )
 
-func LoginForm(ctx *fiber.Ctx, req formEntity.LoginRequest) error {
+func LoginForm(ctx *fiber.Ctx, req formEntity.LoginRequest) (formEntity.LoginResponse, error) {
+	// Initialization variable
+	var res formEntity.LoginResponse
+
 	data, err := personaliaRepo.GetUserByUserName(ctx, req.UserName)
 	if err != nil {
-		return err
+		return res, err
 	}
 
 	// check hash password
 	if !custom.CheckPasswordHash(req.Password, data.Password) {
-		return constantsEntity.ErrWrongPassword
+		return res, constantsEntity.ErrWrongPassword
 	}
-
-	fmt.Println("ASDDASDSASASDA")
 
 	token, err := jwt.CreateJWTToken(formEntity.JWTRequest{
 		UserID: data.UserID,
 		Name:   data.UserName,
 		Admin:  data.IsAdmin,
 	})
-
-	fmt.Println("TOKEN : ", token)
-
 	if err != nil {
-		return err
+		return res, err
 	}
 
-	return nil
+	return formEntity.LoginResponse{
+		UserID:   data.UserID,
+		UserName: data.UserName,
+		IsAdmin:  data.IsAdmin,
+		JWTToken: token,
+	}, nil
 }
