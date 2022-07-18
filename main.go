@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/fiber-go-pos-app/utils/pkg"
 	"log"
 	"time"
 
@@ -57,6 +58,10 @@ func main() {
 		panic(err)
 	}
 
+	if err := pkg.SetupSchema(); err != nil {
+		panic(err)
+	}
+
 	// Web Group
 	webRoutes.BuildLoginRoutes(app)
 
@@ -75,7 +80,7 @@ func main() {
 	serviceRoutes.BuildMemberRoutes(svcGroup)
 	serviceRoutes.BuildProductRoutes(svcGroup)
 
-	if err := app.Listen(":8080"); err != nil {
+	if err := app.Listen(":9000"); err != nil {
 		panic(err)
 	}
 }

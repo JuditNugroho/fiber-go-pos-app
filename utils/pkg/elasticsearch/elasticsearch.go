@@ -9,3 +9,7 @@ func NewESClient() error {
 	ESClient, err = elasticsearch.NewDefaultClient()
 	return err
 }
+
+func GetESClient() *elasticsearch.Client {
+	return ESClient
+}
