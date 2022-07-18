@@ -2,6 +2,7 @@ package personalia
 
 import (
 	"database/sql"
+	constantsEntity "github.com/fiber-go-pos-app/internal/entity/constants"
 
 	"github.com/fiber-go-pos-app/utils/pkg/postgres"
 	"github.com/gofiber/fiber/v2"
@@ -43,6 +44,25 @@ func GetUserByUserID(ctx *fiber.Ctx, userID string) (userEntity.User, bool, erro
 		return user, false, err
 	}
 	return user, true, nil
+}
+
+const queryGetUserByUserName = `
+	SELECT user_id, user_name, full_name, password, is_admin
+	FROM users
+	WHERE user_name = $1
+`
+
+func GetUserByUserName(ctx *fiber.Ctx, userName string) (userEntity.User, error) {
+	var user userEntity.User
+	db := postgres.GetPgConn()
+
+	if err := db.GetContext(ctx.Context(), &user, queryGetUserByUserName, userName); err != nil {
+		if err == sql.ErrNoRows {
+			return user, constantsEntity.ErrUserNotFound
+		}
+		return user, err
+	}
+	return user, nil
 }
 
 const insertUser = `

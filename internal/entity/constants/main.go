@@ -6,7 +6,7 @@ const JWTMethod = "RS256"
 const StaticUrl = "/static"
 const AppName = "fiber-go-pos-app"
 const StaticDirectory = "./static"
-const TemplateDirectory = "./static"
+const TemplateDirectory = "./templates"
 
 // Base constants
 

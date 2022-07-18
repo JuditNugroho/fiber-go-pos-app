@@ -1,8 +1,6 @@
 package main
 
 import (
-	"crypto/rand"
-	"crypto/rsa"
 	"log"
 	"time"
 
@@ -10,11 +8,11 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	jwtWare "github.com/gofiber/jwt/v3"
 	"github.com/gofiber/template/html"
 	"github.com/joho/godotenv"
 
 	"github.com/fiber-go-pos-app/utils/pkg/elasticsearch"
+	"github.com/fiber-go-pos-app/utils/pkg/jwt"
 	"github.com/fiber-go-pos-app/utils/pkg/postgres"
 
 	constantsEntity "github.com/fiber-go-pos-app/internal/entity/constants"
@@ -38,16 +36,12 @@ func main() {
 	})
 
 	// Setting JWT RS256
-	privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
-	if err != nil {
+	if err := jwt.GenerateJWT(); err != nil {
 		log.Fatalf("rsa.GenerateKey: %v", err)
 	}
 
 	// Setting basic configuration
-	app.Use(logger.New(), recover.New(), jwtWare.New(jwtWare.Config{
-		SigningMethod: constantsEntity.JWTMethod,
-		SigningKey:    privateKey.Public(),
-	}))
+	app.Use(logger.New(), recover.New())
 
 	app.Static(constantsEntity.StaticUrl, constantsEntity.StaticDirectory)
 
