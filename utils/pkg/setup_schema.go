@@ -82,6 +82,9 @@ func SetupPostgresTable() error {
 		);
 		
 		CREATE UNIQUE INDEX IF NOT EXISTS user_is_admin ON users (user_id, is_admin);
+
+		INSERT INTO users (user_id, user_name, full_name, password, is_admin, create_time, update_time) VALUES ('admin', 'admin', 'admin', '$2a$10$675NzaMmKuUQ6.FJZtRLleyqVboqoX14V9dPxs05hudEjrZxjGXKq', true, '2022-07-19 05:10:54.037612', null)
+		ON CONFLICT DO NOTHING;
 	`)
 	return err
 }

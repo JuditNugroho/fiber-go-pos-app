@@ -80,7 +80,7 @@ func main() {
 	serviceRoutes.BuildMemberRoutes(svcGroup)
 	serviceRoutes.BuildProductRoutes(svcGroup)
 
-	if err := app.Listen(":9000"); err != nil {
+	if err := app.Listen(":8080"); err != nil {
 		panic(err)
 	}
 }
