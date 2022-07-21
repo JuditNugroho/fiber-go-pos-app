@@ -1,7 +1,9 @@
 package main
 
 import (
-	"github.com/fiber-go-pos-app/utils/pkg"
+	"github.com/fiber-go-pos-app/utils/pkg/custom"
+	"github.com/fiber-go-pos-app/utils/pkg/databases/elasticsearch"
+	"github.com/fiber-go-pos-app/utils/pkg/databases/postgres"
 	"log"
 	"time"
 
@@ -12,11 +14,8 @@ import (
 	"github.com/gofiber/template/html"
 	"github.com/joho/godotenv"
 
-	"github.com/fiber-go-pos-app/utils/pkg/elasticsearch"
-	"github.com/fiber-go-pos-app/utils/pkg/jwt"
-	"github.com/fiber-go-pos-app/utils/pkg/postgres"
-
 	constantsEntity "github.com/fiber-go-pos-app/internal/entity/constants"
+	"github.com/fiber-go-pos-app/utils/pkg/jwt"
 
 	serviceRoutes "github.com/fiber-go-pos-app/routes/services"
 	webRoutes "github.com/fiber-go-pos-app/routes/web"
@@ -58,7 +57,7 @@ func main() {
 		panic(err)
 	}
 
-	if err := pkg.SetupSchema(); err != nil {
+	if err := custom.SetupSchema(); err != nil {
 		panic(err)
 	}
 

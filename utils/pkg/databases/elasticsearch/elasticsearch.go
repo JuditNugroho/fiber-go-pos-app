@@ -2,14 +2,14 @@ package elasticsearch
 
 import "github.com/elastic/go-elasticsearch/v7"
 
-var ESClient *elasticsearch.Client
+var esClient *elasticsearch.Client
 
 func NewESClient() error {
 	var err error
-	ESClient, err = elasticsearch.NewDefaultClient()
+	esClient, err = elasticsearch.NewDefaultClient()
 	return err
 }
 
 func GetESClient() *elasticsearch.Client {
-	return ESClient
+	return esClient
 }

@@ -1,4 +1,4 @@
-CREATE TABLE public.products
+CREATE TABLE IF NOT EXISTS products
 (
     product_id VARCHAR(20) NOT NULL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -14,4 +14,4 @@ CREATE TABLE public.products
 );
 
 
-CREATE INDEX barcode_products_idx ON products (barcode);
+CREATE INDEX IF NOT EXISTS barcode_products_idx ON products (barcode);

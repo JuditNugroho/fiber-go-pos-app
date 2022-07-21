@@ -3,8 +3,8 @@ package personalia
 import (
 	"database/sql"
 	constantsEntity "github.com/fiber-go-pos-app/internal/entity/constants"
+	"github.com/fiber-go-pos-app/utils/pkg/databases/postgres"
 
-	"github.com/fiber-go-pos-app/utils/pkg/postgres"
 	"github.com/gofiber/fiber/v2"
 
 	userEntity "github.com/fiber-go-pos-app/internal/entity/personalia"

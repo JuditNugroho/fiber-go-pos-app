@@ -15,7 +15,7 @@ func Delete(ctx context.Context, index string, documentID string) error {
 	}
 
 	// Perform the request with the client.
-	res, err := req.Do(ctx, ESClient)
+	res, err := req.Do(ctx, esClient)
 	if err != nil {
 		return fmt.Errorf("error getting response: %s", err.Error())
 	}

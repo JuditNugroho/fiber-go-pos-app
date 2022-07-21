@@ -2,8 +2,8 @@ package form
 
 import (
 	"database/sql"
+	"github.com/fiber-go-pos-app/utils/pkg/databases/postgres"
 
-	"github.com/fiber-go-pos-app/utils/pkg/postgres"
 	"github.com/gofiber/fiber/v2"
 
 	constantsEntity "github.com/fiber-go-pos-app/internal/entity/constants"

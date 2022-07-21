@@ -1,4 +1,4 @@
-CREATE TABLE public.members
+CREATE TABLE IF NOT EXISTS members
 (
     id VARCHAR(20) NOT NULL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -8,4 +8,4 @@ CREATE TABLE public.members
 );
 
 
-CREATE INDEX member_phone_idx ON members (phone);
+CREATE INDEX IF NOT EXISTS member_phone_idx ON members (phone);
