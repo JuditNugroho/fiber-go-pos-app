@@ -7,6 +7,7 @@ const StaticUrl = "/static"
 const AppName = "fiber-go-pos-app"
 const StaticDirectory = "./static"
 const TemplateDirectory = "./templates"
+const SchemeDirectory = "./utils/schemes/"
 
 // Base constants
 

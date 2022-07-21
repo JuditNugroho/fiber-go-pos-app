@@ -1,0 +1,15 @@
+{
+  "mappings": {
+    "properties": {
+      "product_id": { "type": "keyword" },
+      "name": { "type": "text" },
+      "barcode": { "type": "text" },
+      "stock": { "type": "integer" },
+      "ppn": { "type": "boolean" },
+      "price": { "type": "float" },
+      "member_price": { "type": "float" },
+      "discount": { "type": "float" },
+      "category_id": { "type": "integer" }
+    }
+  }
+}
