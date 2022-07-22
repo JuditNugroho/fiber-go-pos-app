@@ -1,28 +1,40 @@
 package main
 
 import (
-	"github.com/fiber-go-pos-app/utils/pkg/custom"
-	"github.com/fiber-go-pos-app/utils/pkg/databases/elasticsearch"
-	"github.com/fiber-go-pos-app/utils/pkg/databases/postgres"
+	"embed"
 	"log"
+	"net/http"
 	"time"
 
 	goccyJson "github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/template/html"
 	"github.com/joho/godotenv"
 
 	constantsEntity "github.com/fiber-go-pos-app/internal/entity/constants"
+
+	"github.com/fiber-go-pos-app/utils/pkg/custom"
+	"github.com/fiber-go-pos-app/utils/pkg/databases/elasticsearch"
+	"github.com/fiber-go-pos-app/utils/pkg/databases/postgres"
 	"github.com/fiber-go-pos-app/utils/pkg/jwt"
 
 	serviceRoutes "github.com/fiber-go-pos-app/routes/services"
 	webRoutes "github.com/fiber-go-pos-app/routes/web"
 )
 
+// Embed a template directory
+//go:embed templates/*
+var embedDirTemplate embed.FS
+
+// Embed a static directory
+//go:embed static/*
+var embedDirStatic embed.FS
+
 func main() {
-	engine := html.New(constantsEntity.TemplateDirectory, ".html")
+	engine := html.NewFileSystem(http.FS(embedDirTemplate), ".html")
 	engine.Reload(true)
 	engine.Debug(true)
 
@@ -42,8 +54,11 @@ func main() {
 
 	// Setting basic configuration
 	app.Use(logger.New(), recover.New())
-
-	app.Static(constantsEntity.StaticUrl, constantsEntity.StaticDirectory)
+	app.Use(constantsEntity.StaticUrl, filesystem.New(filesystem.Config{
+		Root:       http.FS(embedDirStatic),
+		PathPrefix: "static",
+		Browse:     true,
+	}))
 
 	if err := godotenv.Load(); err != nil {
 		panic(err)

@@ -8,7 +8,7 @@ import (
 
 func WebSISHomeHandler(ctx *fiber.Ctx) error {
 
-	return ctx.Render("sis/pages/home", constantsEntity.WebData{
+	return ctx.Render("templates/sis/pages/home", constantsEntity.WebData{
 		Title:        constantsEntity.WebSISHomeTitle,
 		BaseURL:      constantsEntity.BaseURL,
 		CurrentURL:   constantsEntity.WebSISHomeURL,
