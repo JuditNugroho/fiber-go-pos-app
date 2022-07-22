@@ -6,7 +6,8 @@ const WebLoginTitle = "Login"
 
 // Web POS Title
 
-const WebPosHomeTitle = "POS - APP"
+const WebPOSTitle = "POS - "
+const WebPOSHomeTitle = WebPOSTitle + "Home"
 
 // Web SIS Title
 

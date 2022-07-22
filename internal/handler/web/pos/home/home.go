@@ -8,8 +8,8 @@ import (
 
 func WebPOSHomeHandler(ctx *fiber.Ctx) error {
 
-	return ctx.Render("pos/home", constantsEntity.WebData{
-		Title:        constantsEntity.WebPosHomeTitle,
+	return ctx.Render("pos/index", constantsEntity.WebData{
+		Title:        constantsEntity.WebPOSHomeTitle,
 		BaseURL:      constantsEntity.BaseURL,
 		CurrentURL:   constantsEntity.WebPOSHomeURL,
 		StaticUrl:    constantsEntity.StaticUrl,

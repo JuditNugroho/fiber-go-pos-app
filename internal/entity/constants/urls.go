@@ -13,4 +13,4 @@ const WebSISProductURL = BaseSISURL + "product"
 
 // Web POS Constanta
 
-const WebPOSHomeURL = BasePOSURL + "home"
+const WebPOSHomeURL = BasePOSURL
